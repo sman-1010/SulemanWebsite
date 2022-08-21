@@ -54,7 +54,7 @@
 		    <!-- WELCOME TEXT -->
             <div class="row">
               <div class="col-md-8 col-md-offset-2 wp1">
-                <h1 class="arrow"> <span>Sentiment Detection</span> from Facial Expressions </h1><!-- Headline -->
+                <h1 class="arrow"> ANALYZING <span>PAINTER’S INFLUENCES</span> ON ARTWORKS WITH <span>CNNS</span> </h1><!-- Headline -->
 				<!-- about / welcome text -->
                 <!-- <p>I am currently doing my MSc in Computer Engineering at Middle East Technical University. I'm focusing my research in the field of AI and more specifically in Deep Learning.</p> -->
               </div>
@@ -85,7 +85,15 @@
                       <i class="fa fa-question-circle"></i><!-- Icon -->
                     </div>
                     <h2>Why this project?</h2><!-- Title -->
-                    <p>This project was done as the semester project in the graduate level course CENG562 Machine Learning.</p><!-- Description -->
+                    <p>This project was done as the semester project in the graduate level course ME536 Design of Intelligent Machines.
+                      Why not just use Google’s image search for this?
+                      Because that will just give you visually similar images
+                      We are searching for the similar artistic style, the artistic style that the model can differentiate with an 87%
+                      accuracy.
+
+                      
+
+                    </p><!-- Description -->
                   </div>
           <!-- Service Box 2 -->
                   <div class="col-md-4 wp2 item delay-05s">
@@ -93,9 +101,13 @@
                       <i class="fa fa-info-circle"></i><!-- Icon -->
                     </div>
                     <h2>Abstract</h2><!-- Title -->
-                    <p>A model was created to detect emotions of up to 3 people at a time and implemented on a locally hosted website. The
-                    input the model was live camera feed, and the model could detect faces and run the sentiment detection on these
-                    faces. The model was improved with self-supervised learning and had a ResNet50 backbone. </p><!-- Description -->
+                    <p>Treat this multiclass classifier as a Blackbox.
+                    Can be used for much more than a classifier as
+                    the features of Blackbox are that it
+                    tells how much artistic element of each artist is present in a new painting.
+                    Find overlaps of artistic elements in paintings.
+                    Exploit these overlaps to identify artistically similar pictures together.
+ </p><!-- Description -->
                   </div>
           <!-- Service Box 3 -->
                   <div class="col-md-4 wp2 item delay-1s">
@@ -106,10 +118,10 @@
                     <ul style="text-align: left">
                       <li>Python</li>
                       <li>TensorFlow</li>
+                      <li>Pandas</li>
                       <li>OpenCV</li>
-                      <li>TensorFlow JS</li>
-                      <li>HTML</li>
-                      <li>Flask</li>
+                      <li>Numpy</li>
+                      <li>Matplotlib</li>
                     </ul> 
                   </div>
           </div>
@@ -136,28 +148,113 @@
             <!-- About 1 -->
             <div class="row color-bg">
               <div class="col-md-6 nopadding features-intro-img">
-                <div class="about-image" style="background-image:url(img/blog1.jpg)"></div><!-- about image 1 -->
+                <div class="about-image" style="background-image:url(img/ml1.jpg)"></div><!-- about image 1 -->
               </div>
               <div class="col-md-6 about-text">
-                <!-- <p style="font-weight:bold">ROMER -Robotics & AI Research Center, Ankara-Turkey</p> -->
-                <br>
-                <p style="font-weight:bold">The project chosen was "Detection of Sentiments from Facial Expressions". The ResNet50 model was used as the base model to
-                classify between 6 emotions of a face inputted to the model. Different methods were attempted to improve the accuracy of
-                this model in training and test cases. Instead of pre-trained weights of the ResNet50, it was attempted to use
-                self-supervision to set the weights of the model before training it on different datasets. To assess the model's
-                performance on certain classes, attention maps were generated for classes to understand what features of a face influences the classes by using
-                grad-cam. For test cases, it was noticed that training datasets available were for full-frontal faces while using the
-                model on new test images or videos, the input image consisted of the body as well and the faces were not oriented right.
-                For the application bases, the haar cascade algorithm from OpenCV was used to detect eyes in the images and then the
-                test image was rotated until the angle between the eyes was horizontal to orient the face similar to training datasets.
-                The face was detected in the rotated image and then cropped this way. This procedure significantly improved the
-                results of using the model on new input videos and pictures.
-                </p><br><!-- About Text 1 -->
+                <p style="font-weight:bold; font-size:25px ">Meaningful Data Augmentation</p>
+                <p style="font-weight:bold; font-size:18px ">What not to do?</p>
+                <p style="font-weight:italic">
+                  <ul style=" font-size:20px ; ">
+                    <li style="color:#ffffff;" >Color Augmentation (Brightness, Saturation, Contrast, Hue)</li>
+                    <li style="color:#ffffff;">Non Affine Transformations (Fisheye, Horizontal Wave, Warp)</li>
+                  </ul>
+                </p>
+                <p style="font-weight:bold; font-size:18px ">Why not to do the above?</p>
+                <p style="font-weight:italic">
+                <ul style=" font-size:20px ; ">
+                  <li style="color:#ffffff;">The nature of the data as important feature that is to be preserved through these transformations would be the
+                  “Artistic Style”</li>
+                  <li style="color:#ffffff;">“Artistic Style” would not be maintained through color augmentations</li>
+                  <li style="color:#ffffff;">Non Affine Transformations would lead to a whole new style altogether.
+</li>
+                </ul>
+                </p>
+                <br><!-- About Text 1 -->
                 <!-- <a href="index.html#team" class="weight-outline-btn">Read more</a>read more button  -->
               </div>
             </div>
+            <!-- About 2 -->
+            <div class="row">
+              <div class="col-md-6 about-text">
+                <!-- <h6 style="font-size:20px">Artificial Intelligence Software Developer Intern</h6>headline -->
+              <p style="font-weight:bold; font-size:25px ">Improving the model with Meaningful Data Augmentation</p>
+              <br>
+                  <p style="font-weight:bold; font-size:18px ">What’s Left? Affine Transformations</p>
+                  <p style="font-weight:italic">
+                  <ul style=" font-size:20px ; ">
+                    <li style="color:#8b8888;">Creating synthetic data with more variety from existing data</li>
+                    <br>
+                    <li style="color:#8b8888;">Affine Transformations Introduced:
+                    <ul style=" font-size:20px ; ">
+                        <li style="color:#8b8888;">Horizontal and Vertical Flip</li>
+                        <br>
+                        <li style="color:#8b8888;">Rotation </li> 
+                        <br>
+                        <li style="color:#8b8888;">Translations ( Height Shift, Width Shift) </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </p>
+                  
+              </div>
+              <div class="col-md-6 nopadding features-intro-img">
+                <div class="about-image" style="background-image:url(img/ml2.jpg)"></div><!-- about image 2 -->
+              </div>
+            </div>
+                <!-- About 3 -->
+                <div class="row color-bg">
+                  <div class="col-md-6 nopadding features-intro-img">
+                    <div class="about-image" style="background-image:url(img/ml3.jpg)"></div><!-- about image 1 -->
+                  </div>
+                  <div class="col-md-6 about-text">                    
+                    <p style="font-weight:bold; font-size:25px ">Data Analysis to find Similar Images</p>
+                    <ul style=" font-size:20px ; ">
+                      <li style="color:#ffffff;">Used classifier on over 4000 paintings to get a distribution of each artistic element in each painting.
+                        <ul style=" font-size:20px ; ">
+                          <li style="color:#ffffff;">Formed a feature space matrix of 4299x11</li>
+                        </ul>
+                      </li>
+                      <br>
+                      <li style="color:#ffffff;">Input my own painting to the model, get an output of 1x11 </li>
+                      <br>
+                      <li style="color:#ffffff;">Narrow the 1 x 11 vectors to 1 x n vector where these “n” percentages sum up to 70% of the probability distribution. </li>
+                      <br>
+                      <li style="color:#ffffff;">The feature space is then reduced to these “n” columns as well
+                      to find the Euclidian distance based on the modified input and feature space</li>
+                    
+                    </ul>
+                    </p><br><!-- About Text 1 -->
+                    <!-- <a href="index.html#team" class="weight-outline-btn">Read more</a>read more button  -->
+                  </div>
+                </div>
 
-		
+                            <!-- About 4 -->
+                            <div class="row">
+                              <div class="col-md-6 about-text">
+                                <!-- <h6 style="font-size:20px">Artificial Intelligence Software Developer Intern</h6>headline -->
+                                <p style="font-weight:bold; font-size:25px ">Demystifying how the CNN Model thinks</p>
+                                <p style="font-weight:bold; font-size:18px ">Based on the result from the previous picture: </p>
+                                <p style="font-weight:italic">
+                                <ul style=" font-size:20px ; ">
+                                  <li style="color:#8b8888;">What gives away a Picasso painting?
+                                    <ul style=" font-size:20px ; ">
+                                      <li style="color:#8b8888;">The eyes are not the same size </li>
+                                      <br>
+                                      <li style="color:#8b8888;">The eyes are not on the same elevation </li>
+                                      <br>
+                                      <li style="color:#8b8888;">Faces are not full frontal </li>
+                                    </ul>
+                                  </li>
+                                  <br>
+                                  <li style="color:#8b8888;">With adding a Homer Simpson image that follows all those features, it was identified to have Picasso's artisitic element with 88% assurity.</li>
+                                </ul>
+                                </p>
+                            
+                              </div>
+                              <div class="col-md-6 nopadding features-intro-img">
+                                <div class="about-image" style="background-image:url(img/ml4.jpg)"></div><!-- about image 2 -->
+                              </div>
+                            </div>
 		
 		<br>
     <br>
@@ -172,7 +269,7 @@
 		    <!-- Headline -->
             <div class="row">
               <div class="col-md-12">
-                <h1 class="arrow">How to <span>contact</span> me</h1>
+                <h1 class="arrow">How to <span>contact </span>me</h1>
               </div>
             </div>
             <div class="row contact-details">
@@ -218,25 +315,25 @@
         CONTACT SECTION END
         =========================== -->
 		
-
 		
-		<!-- ==========================
-        FOOTER SECTION
-        =========================== -->
-        <footer>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <a href="index.html" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-                <br>
-                <p>Click above to return to main page</p>
-              </div>
-            </div>
+		
+    <!-- ==========================
+            FOOTER SECTION
+            =========================== -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <a href="index.html" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+            <br>
+            <p>Click above to return to main page</p>
           </div>
-        </footer>
-		<!-- ==========================
-        FOOTER SECTION END
-        =========================== -->		
+        </div>
+      </div>
+    </footer>
+    <!-- ==========================
+            FOOTER SECTION END
+            =========================== -->
 		
 		
     <!-- jQuery -->

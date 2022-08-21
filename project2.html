@@ -54,7 +54,7 @@
 		    <!-- WELCOME TEXT -->
             <div class="row">
               <div class="col-md-8 col-md-offset-2 wp1">
-                <h1 class="arrow"> <span>Sentiment Detection</span> from Facial Expressions </h1><!-- Headline -->
+                <h1 class="arrow"> JOINT <span>SEMANTIC-GEOMETRIC</span> LEARNING FOR <span>POLYGONAL BUILDING</span> SEGMENTATION </h1><!-- Headline -->
 				<!-- about / welcome text -->
                 <!-- <p>I am currently doing my MSc in Computer Engineering at Middle East Technical University. I'm focusing my research in the field of AI and more specifically in Deep Learning.</p> -->
               </div>
@@ -85,7 +85,7 @@
                       <i class="fa fa-question-circle"></i><!-- Icon -->
                     </div>
                     <h2>Why this project?</h2><!-- Title -->
-                    <p>This project was done as the semester project in the graduate level course CENG562 Machine Learning.</p><!-- Description -->
+                    <p>This project was done as the semester project in the graduate level course CENG501 Deep Learning.</p><!-- Description -->
                   </div>
           <!-- Service Box 2 -->
                   <div class="col-md-4 wp2 item delay-05s">
@@ -93,9 +93,9 @@
                       <i class="fa fa-info-circle"></i><!-- Icon -->
                     </div>
                     <h2>Abstract</h2><!-- Title -->
-                    <p>A model was created to detect emotions of up to 3 people at a time and implemented on a locally hosted website. The
-                    input the model was live camera feed, and the model could detect faces and run the sentiment detection on these
-                    faces. The model was improved with self-supervised learning and had a ResNet50 backbone. </p><!-- Description -->
+                    <p>This project consists of two parts which is a Multi-task Segmentation Network that predicts vertices of the polygon to segment the
+                    building, next there is a Polygon Refinement Network which takes these vertices and the cropped segment of the building
+                    and produces displacement values for each vertex to improve the polygonal segmentation </p><!-- Description -->
                   </div>
           <!-- Service Box 3 -->
                   <div class="col-md-4 wp2 item delay-1s">
@@ -105,11 +105,10 @@
                     <h2>Languages and Libraries Used</h2><!-- Title -->
                     <ul style="text-align: left">
                       <li>Python</li>
-                      <li>TensorFlow</li>
-                      <li>OpenCV</li>
-                      <li>TensorFlow JS</li>
-                      <li>HTML</li>
-                      <li>Flask</li>
+                      <li>PyTorch</li>
+                      <li>Pandas</li>
+                      <li>Numpy</li>
+                      <li>Matplotlib</li>
                     </ul> 
                   </div>
           </div>
@@ -136,32 +135,61 @@
             <!-- About 1 -->
             <div class="row color-bg">
               <div class="col-md-6 nopadding features-intro-img">
-                <div class="about-image" style="background-image:url(img/blog1.jpg)"></div><!-- about image 1 -->
+                <div class="about-image" style="background-image:url(img/deepl1.jpg)"></div><!-- about image 1 -->
               </div>
               <div class="col-md-6 about-text">
-                <!-- <p style="font-weight:bold">ROMER -Robotics & AI Research Center, Ankara-Turkey</p> -->
+                <p style="font-weight:bold; font-size:20px ">Resnet Backbone & Vertex Embedding</p>
                 <br>
-                <p style="font-weight:bold">The project chosen was "Detection of Sentiments from Facial Expressions". The ResNet50 model was used as the base model to
-                classify between 6 emotions of a face inputted to the model. Different methods were attempted to improve the accuracy of
-                this model in training and test cases. Instead of pre-trained weights of the ResNet50, it was attempted to use
-                self-supervision to set the weights of the model before training it on different datasets. To assess the model's
-                performance on certain classes, attention maps were generated for classes to understand what features of a face influences the classes by using
-                grad-cam. For test cases, it was noticed that training datasets available were for full-frontal faces while using the
-                model on new test images or videos, the input image consisted of the body as well and the faces were not oriented right.
-                For the application bases, the haar cascade algorithm from OpenCV was used to detect eyes in the images and then the
-                test image was rotated until the angle between the eyes was horizontal to orient the face similar to training datasets.
-                The face was detected in the rotated image and then cropped this way. This procedure significantly improved the
-                results of using the model on new input videos and pictures.
+                <p style="font-weight:italic">The resnet backbone is a variant of the ResNet50 where skip-connection structure are used to up-sample and concatenate
+                the feature maps of four skip layers. The size of the final feature map for vertex embedding. The input to the Resnet
+                Backbone is 224x224x3 cropped image of the building segment from the original picture through the bounding boxes
+                corresponding to each building instance and rescaled into the same size. The skip concatenation leads to a feature map
+                of 112x112x256 for the same building segment. The coordinates of building vertices obtained from Vertex Generation Model
+                are transformed accordingly for vertex embedding on the final feature map of the backbone. Each vertex is assigned with
+                the features extracted from the channel direction of the cube.
                 </p><br><!-- About Text 1 -->
                 <!-- <a href="index.html#team" class="weight-outline-btn">Read more</a>read more button  -->
               </div>
             </div>
-
-		
+            <!-- About 2 -->
+            <div class="row">
+              <div class="col-md-6 about-text">
+                <!-- <h6 style="font-size:20px">Artificial Intelligence Software Developer Intern</h6>headline -->
+              <p style="font-weight:bold; font-size:20px ">Propagation Model & Coordinate Transforming & Refined Polygon Vertices</p>
+              <br>
+                <p>The polygonal vertices obtained from the Vertex Embedding step are considered as nodes of a graph, and every two
+                neighbouring vertices constitutes an edge of the graph. A gated graph neural network is used to learn the offset needed
+                for each vertex , the displacement needed to move the vertex to the ground truth. After the propagation process through
+                the Gated Graph Neural Network, two fully-connected layers are used to output a displacement value for each vertex. The
+                prediction of displacement value is also formulated as a classification issue and the model is trained with
+                cross-entropy loss. In the coordinate transforming step, the output displacement classes of PRN are converted to the
+                displacement coordinates, and added to the corresponding vertex coordinates.</p><br><!-- About Text 2 -->
+              </div>
+              <div class="col-md-6 nopadding features-intro-img">
+                <div class="about-image" style="background-image:url(img/deepl2.jpg)"></div><!-- about image 2 -->
+              </div>
+            </div>
+                <!-- About 3 -->
+                <div class="row color-bg">
+                  <div class="col-md-6 nopadding features-intro-img">
+                    <div class="about-image" style="background-image:url(img/deepl3.jpg)"></div><!-- about image 1 -->
+                  </div>
+                  <div class="col-md-6 about-text">
+                    <br>
+                    <br>
+                    <p style="font-weight:bold; font-size:20px ">Feature Extractor Result from Resnet Backbone</p>
+                    <p style="font-weight:italic">As the ResNet50 is used as a feature extractor for the building instance images, it uses skip connects compare to the classic ResNet50 and concatenates them at the end leading to a feature map of depth 256 where each feature map has dimensions of 112 x 112 pixels. On the left, six of such feature maps are shown. The size of the final feature map for vertex embedding is 112x112x256.
+                    </p><br><!-- About Text 1 -->
+                    <!-- <a href="index.html#team" class="weight-outline-btn">Read more</a>read more button  -->
+                  </div>
+                </div>
 		
 		<br>
     <br>
     <br>
+
+        <p style='text-align: center; font-size: 20px'>More information on the project available at Github
+        <a href="https://github.com/CENG501-Projects/CENG501-Spring2022/tree/main/Project_Suleman_Unlu" style='text-align: center;' class="social-btn"><i class="fa fa-github"></i></a></p>
 		<!-- ==========================
         CONTACT SECTION
         =========================== -->
@@ -172,7 +200,7 @@
 		    <!-- Headline -->
             <div class="row">
               <div class="col-md-12">
-                <h1 class="arrow">How to <span>contact</span> me</h1>
+                <h1 class="arrow">How to <span>contact </span>me</h1>
               </div>
             </div>
             <div class="row contact-details">
@@ -218,25 +246,25 @@
         CONTACT SECTION END
         =========================== -->
 		
-
 		
-		<!-- ==========================
-        FOOTER SECTION
-        =========================== -->
-        <footer>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <a href="index.html" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-                <br>
-                <p>Click above to return to main page</p>
-              </div>
-            </div>
+		
+    <!-- ==========================
+            FOOTER SECTION
+            =========================== -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <a href="index.html" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+            <br>
+            <p>Click above to return to main page</p>
           </div>
-        </footer>
-		<!-- ==========================
-        FOOTER SECTION END
-        =========================== -->		
+        </div>
+      </div>
+    </footer>
+    <!-- ==========================
+            FOOTER SECTION END
+            =========================== -->
 		
 		
     <!-- jQuery -->
