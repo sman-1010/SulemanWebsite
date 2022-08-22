@@ -84,7 +84,7 @@ $(window).load(function() {
 
 	$('#blogSlider').flexslider({
 		animation: "slide",
-		directionNav: false,
+		directionNav: true,
 		controlNav: true,
 		touch: false,
 		pauseOnHover: true,
